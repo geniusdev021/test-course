@@ -40,12 +40,32 @@ As a user, I want to see a list of Things and be able to sort and filter them in
     - Provide at least 1 sorting mechanic
 - API
     - Provide an endpoint for returning the list of Things needed to render the table. Use REST best practices
-    - The endpoint should read from the provided JSON file of Things
+    - The endpoint should read from the provided csv file (ad hoc "database") of Things
+    - Implement a `/catalogs` endpoint that returns a JSON response with a list of all the _unique_ catalogs in the "database"
+    - Implement a `/things` endpoint that returns each row of our "database" in an array of objects in JSON:
+
+```
+{
+  [
+   {
+    "uuid": "dd9a3d2c-0af4-4dd4-bd88-8f96390fed16",
+    "title": "Dummy Title 1",
+    "company": "Dunder Mifflin Paper Co.",
+    "catalog": "Plain White",
+    "createdAt": "2018-02-17T10:27:56.394Z",
+    "updatedAt": "2019-10-20T01:17:33.153Z",
+    "isActive": true,
+    "image": "https://formidableengineeringconsultants.com/wp-content/uploads/2014/05/things.jpg"
+   },
+   ....
+  ]
+}
+```
 
 ## Technical Considerations
 
-Our first customers are ready to use the product immediately, so we don't have a lot of time. To get us up and running quickly, we will forgo a database and rely on JSON file storage. 
+Our first customers are ready to use the product immediately, so we don't have a lot of time. To get us up and running quickly, we will forgo a database and rely on a comma separated value file (csv) for storage. 
 
-**While you only need to implement the retrieval of the JSON file, it is imperative that your design allows for us to swap out data stores easily**. For example, we will want to replace the JSON file storage with a relational DB, and we have already had inquiries from customers about being able to store their data in their own external systems which we will need to retrieve it from.
+**While you only need to implement the retrieval of the csv file, it is imperative that your design allows for us to swap out data stores easily**. For example, we will want to replace the CSV file storage with a relational DB, and we have already had inquiries from customers about being able to store their data in their own external systems which we will need to retrieve it from.
 
-The JSON file can be found at `./db.json`
+The CSV file can be found at `./db.csv`
